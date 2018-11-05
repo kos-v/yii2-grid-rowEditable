@@ -32,7 +32,7 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     /**
      * @var \Closure|array|string
      */
-    public $input = self::INPUT_INPUT;
+    public $input = self::INPUT_TYPE_INPUT;
 
     /**
      * @var string

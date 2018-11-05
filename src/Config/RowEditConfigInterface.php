@@ -13,9 +13,9 @@ namespace Kosv\Yii2Grid\RowEditor\Config;
  */
 interface RowEditConfigInterface
 {
-    const INPUT_INPUT = \Kosv\Yii2Grid\RowEditor\Input\Input::class;
-    const INPUT_TEXTAREA = \Kosv\Yii2Grid\RowEditor\Input\Textarea::class;
-    const INPUT_DROPDOWNLIST = \Kosv\Yii2Grid\RowEditor\Input\DropDownList::class;
+    const INPUT_TYPE_INPUT = \Kosv\Yii2Grid\RowEditor\Input\Input::class;
+    const INPUT_TYPE_TEXTAREA = \Kosv\Yii2Grid\RowEditor\Input\Textarea::class;
+    const INPUT_TYPE_DROPDOWNLIST = \Kosv\Yii2Grid\RowEditor\Input\DropDownList::class;
 
     /**
      * @param array $config

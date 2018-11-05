@@ -7,44 +7,42 @@
 
 namespace Kosv\Yii2Grid\RowEditor\Input;
 
-use yii\helpers\Html;
+use yii\base\BaseObject;
 
 /**
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-class Input extends AbstractInput implements InputInterface
+class InputDto extends BaseObject
 {
     /**
      * @var string
      */
-    public $name;
+    public $attribute;
 
     /**
-     * @var array
+     * @var \yii\base\Model
      */
-    public $options = [];
-
-    /**
-     * @var string
-     */
-    public $type = 'text';
+    public $form;
 
     /**
      * @var string
      */
-    public $value;
+    public $formAttribute;
 
     /**
-     * @return string
+     * @var int
      */
-    public function __toString()
-    {
-        return Html::input(
-            $this->type,
-            $this->name ?: $this->getName(),
-            $this->value,
-            $this->options
-        )
-    }
+    public $index;
+
+
+    /**
+     * @var int|string
+     */
+    public $key;
+
+    /**
+     * @var \yii\base\Model
+     */
+    public $model;
 }
