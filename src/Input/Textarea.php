@@ -7,11 +7,19 @@
 
 namespace Kosv\Yii2Grid\RowEditor\Input;
 
+use yii\helpers\Html;
+
 /**
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-class Textarea implements InputInterface
+class Textarea extends AbstractInput
 {
-
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return Html::textarea($this->getName(), $this->getValue(), $this->options);
+    }
 }
