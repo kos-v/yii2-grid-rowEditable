@@ -39,14 +39,14 @@ trait GridRowEditTrait
      */
     public function init()
     {
-        $this->beforeInitRowEdit();
+        $this->initRowEditor();
         parent::init();
     }
 
     /**
      * @return void
      */
-    protected function beforeInitRowEdit()
+    protected function initRowEditor()
     {
         if (!$this->dataColumnClass) {
             $this->dataColumnClass = $this->getDefaultEditColumnClass();
