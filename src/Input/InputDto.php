@@ -35,7 +35,6 @@ class InputDto extends BaseObject
      */
     public $index;
 
-
     /**
      * @var int|string
      */
