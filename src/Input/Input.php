@@ -13,22 +13,12 @@ use yii\helpers\Html;
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-class Input extends AbstractInput implements InputInterface
+class Input extends AbstractInput
 {
     /**
      * @var string
      */
-    public $name;
-
-    /**
-     * @var array
-     */
-    public $options = [];
-
-    /**
-     * @var string
-     */
-    public $type = 'text';
+    public $htmlInputType = 'text';
 
     /**
      * @var string
@@ -41,10 +31,10 @@ class Input extends AbstractInput implements InputInterface
     public function __toString()
     {
         return Html::input(
-            $this->type,
-            $this->name ?: $this->getName(),
-            $this->value,
+            $this->htmlInputType,
+            $this->getName(),
+            $this->getValue(),
             $this->options
-        )
+        );
     }
 }
