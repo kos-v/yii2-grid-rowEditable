@@ -14,6 +14,12 @@ namespace Kosv\Yii2Grid\RowEditor\Input;
 interface InputInterface
 {
     /**
+     * @param InputDto $inputDto
+     * @param array $params
+     */
+    public function __construct(InputDto $inputDto, $params = []);
+
+    /**
      * @return string
      */
     public function __toString();
