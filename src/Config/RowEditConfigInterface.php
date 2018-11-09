@@ -17,6 +17,9 @@ interface RowEditConfigInterface
     const INPUT_TYPE_TEXTAREA = \Kosv\Yii2Grid\RowEditor\Input\Textarea::class;
     const INPUT_TYPE_DROPDOWNLIST = \Kosv\Yii2Grid\RowEditor\Input\DropDownList::class;
 
+    const SELECT_MODE_CHECKBOX = 0x1;
+    const SELECT_MODE_CLICK = 0x2;
+
     /**
      * @param array $config
      * @return $this

@@ -30,14 +30,19 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     public $formAttribute = 'editingRows';
 
     /**
+     * @var string
+     */
+    public $gridCssClass = 'gre-grid-view';
+
+    /**
      * @var \Closure|array|string
      */
-    public $input = self::INPUT_TYPE_INPUT;
+    public $input = RowEditConfigInterface::INPUT_TYPE_INPUT;
 
     /**
      * @var string
      */
-    public $inputWrapHtmlClass = 're-input-wrap';
+    public $inputWrapHtmlClass = 'gre-input-wrap';
 
     /**
      * @var string
@@ -47,7 +52,27 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     /**
      * @var string
      */
-    public $outputWrapHtmlClass = 're-output-wrap';
+    public $prefix = 'gre';
+
+    /**
+     * @var int
+     */
+    public $selectMode = RowEditConfigInterface::SELECT_MODE_CHECKBOX;
+
+    /**
+     * @var array
+     */
+    public $selectModeParams = [
+        RowEditConfigInterface::SELECT_MODE_CHECKBOX => [
+            'selectRow' => '.gre-select-row',
+            'selectAllRows' => '.gre-select-allrows'
+        ],
+    ];
+
+    /**
+     * @var string
+     */
+    public $outputWrapHtmlClass = 'gre-output-wrap';
 
     /**
      * @var string
@@ -89,7 +114,8 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
             $publicProps = ArrayHelper::getColumn($publicProps, 'name');
 
             foreach ($config as $configKey => $configValue) {
-                if (!in_array($configKey, $publicProps)) {
+                if (!in_array($configKey, $publicProps) ||
+                    in_array($configKey, $this->getIgnoreMergeProps())) {
                     throw new UnknownPropertyException(
                         'Setting unknown property: ' . static::class . "::{$configKey}"
                     );
@@ -99,5 +125,13 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getIgnoreMergeProps()
+    {
+        return ['prefix', 'gridCssClass', 'selectMode', 'selectModeParams'];
     }
 }
