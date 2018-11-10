@@ -57,18 +57,26 @@ class RowEditColumn extends DataColumn
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        $displayValue = Html::tag(
-            $this->editConfig->outputWrapHtmlTag,
-            parent::renderDataCellContent($model, $key, $index),
-            ['class' => $this->editConfig->outputWrapHtmlClass]
-        );
+        $displayValue = '';
+        $editInput = '';
+
+        if ($this->editConfig->enable) {
+            $displayValue = Html::tag(
+                $this->editConfig->outputWrapHtmlTag,
+                parent::renderDataCellContent($model, $key, $index),
+                ['class' => $this->editConfig->outputWrapHtmlClass]
+            );
 
 
-        $editInput = Html::tag(
-            $this->editConfig->inputWrapHtmlTag,
-            $this->renderDataCellEditInput($model, $key, $index),
-            ['class' => $this->editConfig->inputWrapHtmlClass]
-        );
+            $editInput = Html::tag(
+                $this->editConfig->inputWrapHtmlTag,
+                $this->renderDataCellEditInput($model, $key, $index),
+                ['class' => $this->editConfig->inputWrapHtmlClass]
+            );
+        } else {
+            $displayValue = parent::renderDataCellContent($model, $key, $index);
+        }
+
 
         return $displayValue . $editInput;
     }

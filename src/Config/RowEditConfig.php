@@ -20,6 +20,11 @@ use yii\helpers\ArrayHelper;
 class RowEditConfig extends BaseObject implements RowEditConfigInterface
 {
     /**
+     * @var bool
+     */
+    public $enable = true;
+
+    /**
      * @var Model
      */
     public $form;
