@@ -27,6 +27,22 @@ trait GridRowEditTrait
     protected $rowEditConfig;
 
     /**
+     * @return string
+     */
+    public function getDefaultEditColumnClass()
+    {
+        return RowEditColumn::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultEditConfigClass()
+    {
+        return RowEditConfig::class;
+    }
+
+    /**
      * @return RowEditConfig
      */
     public function getRowEditConfig()
@@ -41,22 +57,6 @@ trait GridRowEditTrait
     {
         $this->initRowEditor();
         parent::init();
-    }
-
-    /**
-     * @return string
-     */
-    public function getDefaultEditColumnClass()
-    {
-        return RowEditColumn::class;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDefaultEditConfigClass()
-    {
-        return RowEditConfig::class;
     }
 
     /**
