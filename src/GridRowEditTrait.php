@@ -8,7 +8,7 @@
 namespace Kosv\Yii2Grid\RowEditor;
 
 use Kosv\Yii2Grid\RowEditor\Config\RowEditConfig;
-use Kosv\Yii2Grid\RowEditor\Config\RowEditConfigInterface;
+use yii\helpers\Html;
 
 /**
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
@@ -22,12 +22,12 @@ trait GridRowEditTrait
     public $commonEditParams = [];
 
     /**
-     * @var RowEditConfigInterface
+     * @var RowEditConfig
      */
     protected $rowEditConfig;
 
     /**
-     * @return RowEditConfigInterface
+     * @return RowEditConfig
      */
     public function getRowEditConfig()
     {
@@ -41,6 +41,22 @@ trait GridRowEditTrait
     {
         $this->initRowEditor();
         parent::init();
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultEditColumnClass()
+    {
+        return RowEditColumn::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultEditConfigClass()
+    {
+        return RowEditConfig::class;
     }
 
     /**
@@ -59,21 +75,7 @@ trait GridRowEditTrait
             unset($commonEditParams['class']);
         }
         $this->rowEditConfig = new $configClass($commonEditParams);
-    }
 
-    /**
-     * @return string
-     */
-    protected function getDefaultEditColumnClass()
-    {
-        return RowEditColumn::class;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getDefaultEditConfigClass()
-    {
-        return RowEditConfig::class;
+        Html::addCssClass($this->options, $this->rowEditConfig->gridCssClass);
     }
 }
