@@ -60,6 +60,15 @@ trait GridRowEditTrait
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function run()
+    {
+        $this->runRowEditor();
+        parent::run();
+    }
+
+    /**
      * @return void
      */
     protected function initRowEditor()
@@ -77,5 +86,13 @@ trait GridRowEditTrait
         $this->rowEditConfig = new $configClass($commonEditParams);
 
         Html::addCssClass($this->options, $this->rowEditConfig->gridCssClass);
+    }
+
+    /**
+     * @return void
+     */
+    protected function runRowEditor()
+    {
+
     }
 }
