@@ -7,6 +7,7 @@
 
 namespace Kosv\Yii2Grid\RowEditor;
 
+use Closure;
 use Kosv\Yii2Grid\RowEditor\Config\RowEditConfig;
 use yii\helpers\Html;
 
@@ -57,6 +58,27 @@ trait GridRowEditTrait
     {
         $this->initRowEditor();
         parent::init();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function renderTableRow($model, $key, $index)
+    {
+        $cells = [];
+        /* @var $column \yii\grid\Column */
+        foreach ($this->columns as $column) {
+            $cells[] = $column->renderDataCell($model, $key, $index);
+        }
+        if ($this->rowOptions instanceof Closure) {
+            $options = call_user_func($this->rowOptions, $model, $key, $index, $this);
+        } else {
+            $options = $this->rowOptions;
+        }
+        $options['data-key'] = is_array($key) ? json_encode($key) : (string) $key;
+        $options["data-{$this->rowEditConfig->prefix}-selected"] = 'false';
+
+        return Html::tag('tr', implode('', $cells), $options);
     }
 
     /**
