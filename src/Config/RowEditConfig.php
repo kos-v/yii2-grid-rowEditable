@@ -47,7 +47,7 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     /**
      * @var string
      */
-    public $inputWrapHtmlClass = 'gre-input-wrap';
+    public $inputWrapHtmlClass = 'input-wrap';
 
     /**
      * @var string
@@ -77,7 +77,7 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     /**
      * @var string
      */
-    public $outputWrapHtmlClass = 'gre-output-wrap';
+    public $outputWrapHtmlClass = 'output-wrap';
 
     /**
      * @var string

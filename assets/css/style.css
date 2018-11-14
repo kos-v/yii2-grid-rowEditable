@@ -1,0 +1,11 @@
+.gre-grid-view tr[data-gre-selected="true"] {
+    background-color: #d9edf7!important;
+}
+
+.gre-grid-view tr[data-gre-selected="true"] .output-wrap {
+    display: none;
+}
+
+.gre-grid-view tr[data-gre-selected="false"] .input-wrap {
+    display: none;
+}
