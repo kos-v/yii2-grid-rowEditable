@@ -9,6 +9,8 @@ namespace Kosv\Yii2Grid\RowEditor;
 
 use Closure;
 use Kosv\Yii2Grid\RowEditor\Config\RowEditConfig;
+use Kosv\Yii2Grid\RowEditor\Config\RowEditConfigInterface;
+use Kosv\Yii2Grid\RowEditor\Select\CheckboxColumnInterface;
 use yii\helpers\Json;
 use yii\helpers\Html;
 
@@ -42,6 +44,20 @@ trait GridRowEditTrait
     public function getDefaultEditConfigClass()
     {
         return RowEditConfig::class;
+    }
+
+    /**
+     * @return \yii\grid\Column|null
+     */
+    public function getFirstColumnByType($className)
+    {
+        foreach ($this->columns as $column) {
+            if ($column instanceof $className) {
+                return $column;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -92,6 +108,33 @@ trait GridRowEditTrait
     }
 
     /**
+     * @return array
+     */
+    protected function getRowEditorSelectParams()
+    {
+        $selectParams = [];
+
+        $selectMode = RowEditConfigInterface::SELECT_MODE_CHECKBOX;
+        if ($this->rowEditConfig->selectMode & $selectMode) {
+            /** @var CheckboxColumnInterface $column */
+            $column = $this->getFirstColumnByType(CheckboxColumnInterface::class);
+            if (!$column) {
+                throw new \UnexpectedValueException(
+                    'When the SELECT_MODE_CHECKBOX mode is on, ' .
+                    'object ' . static::class . ' must contain a column with ' .
+                    'the implementation of ' . CheckboxColumnInterface::class
+                );
+            }
+            $selectParams[$selectMode] = [
+                'itemSelector' => '.' . $column->getSelectItemClass(),
+                'allSelector' => '.' . $column->getSelectAllClass(),
+            ];
+        }
+
+        return $selectParams;
+    }
+
+    /**
      * @return void
      */
     protected function initRowEditor()
@@ -121,11 +164,13 @@ trait GridRowEditTrait
         AssetsBundle::register($view);
 
         $jsGreSelector = '#' . $this->options['id'];
-        $jsGreParams = Json::encode([
+        $jsGreParams = [
             'prefix' => $this->rowEditConfig->prefix,
             'selectMode' => $this->rowEditConfig->selectMode,
-            'selectModeParams' => $this->rowEditConfig->selectModeParams
-        ]);
+            'selectParams' => $this->getRowEditorSelectParams(),
+        ];
+        $jsGreParams = Json::encode($jsGreParams);
+
         $view->registerJs("new kosv.GridRowEditor('{$jsGreSelector}', {$jsGreParams});");
     }
 }
