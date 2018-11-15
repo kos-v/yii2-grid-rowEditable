@@ -9,6 +9,7 @@ namespace Kosv\Yii2Grid\RowEditor;
 
 use Closure;
 use Kosv\Yii2Grid\RowEditor\Config\RowEditConfig;
+use yii\helpers\Json;
 use yii\helpers\Html;
 
 /**
@@ -115,6 +116,16 @@ trait GridRowEditTrait
      */
     protected function runRowEditor()
     {
+        /** @var \yii\web\View $view */
+        $view = $this->getView();
+        AssetsBundle::register($view);
 
+        $jsGreSelector = '#' . $this->options['id'];
+        $jsGreParams = Json::encode([
+            'prefix' => $this->rowEditConfig->prefix,
+            'selectMode' => $this->rowEditConfig->selectMode,
+            'selectModeParams' => $this->rowEditConfig->selectModeParams
+        ]);
+        $view->registerJs("new kosv.GridRowEditor('{$jsGreSelector}', {$jsGreParams});");
     }
 }
