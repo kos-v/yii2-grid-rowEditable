@@ -14,20 +14,16 @@ if (typeof kosv == 'undefined' || !kosv) {
 
         this.$grid = $(gridSelector).eq(0);
         this.prefix = 'gre';
+        this.saveAjax = false;
+        this.saveUrl = location.pathname;
         this.selectMode = this.SELECT_MODE_CHECKBOX;
-        this.selectModeParams = {};
+        this.selectParams = {};
 
-        this.initEvents();
+        $.extend(this, params);
+
+        this._initEvents();
     };
     var proto = kosv.GridRowEditor.prototype;
-
-    proto.initEvents = function () {
-        var self = this;
-
-        self.$grid.on(self.p('changeRowSelected'), function (e, $row) {
-            self.revertSelectedRow($row);
-        })
-    };
 
     proto.dataAttr = function (name) {
         return 'data-' + this.p('-' + name);
@@ -37,33 +33,44 @@ if (typeof kosv == 'undefined' || !kosv) {
         return this.prefix + str;
     };
 
+    proto.invertSelectedRow = function ($row) {
+        this.selectRow($row, !this.isSelectedRow($row));
+    };
+
     proto.isSelectedRow = function ($row) {
         return $row.attr(this.dataAttr('selected')) === 'true';
     };
 
-    proto.selectRow = function ($row) {
-        if (!this.isSelectedRow($row)) {
-            $row.attr(this.dataAttr('selected'), 'true');
-            return true;
-        }
-        return false;
+    proto.selectRow = function ($row, state) {
+        state = state ? 'true' : 'false';
+        $row.attr(this.dataAttr('selected'), state);
     };
 
-    proto.unselectRow = function ($row) {
-        if (this.isSelectedRow($row)) {
-            $row.attr(this.dataAttr('selected'), 'false');
-            return true;
-        }
-        return false;
+    proto._initEvents = function () {
+        this._initRowSelectorEvents();
     };
 
-    proto.revertSelectedRow = function ($row) {
-        if (this.isSelectedRow($row)) {
-            this.unselectRow($row);
-        } else {
-            this.selectRow($row);
+    proto._initRowSelectorEvents = function () {
+        var self = this;
+        var selectParams = self.selectParams[self.selectMode];
+
+        self.$grid.on(self.p('rowSelected'), function (e, $row, state) {
+            self.selectRow($row, state)
+        });
+
+        if (self.selectMode & self.SELECT_MODE_CHECKBOX) {
+            $(selectParams.itemSelector).on('change', function () {
+                var row = $(this).closest('tr');
+                self.$grid
+                    .trigger(self.p('rowSelected'), [row, !!this.checked]);
+            });
+
+            $(selectParams.allSelector).on('change', function () {
+                $(this).closest('table')
+                    .find(selectParams.itemSelector)
+                    .change();
+            });
         }
     };
-
 
 })(jQuery);
