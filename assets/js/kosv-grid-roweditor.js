@@ -2,6 +2,8 @@
  * @link https://github.com/Konstantin-Vl/yii2-grid-rowEditor
  * @copyright Copyright (c) 2018 Konstantin Voloshchuk
  * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditor/blob/master/LICENSE
+ * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
+ * @since 1.0
  */
 if (typeof kosv == 'undefined' || !kosv) {
     var kosv = {};
@@ -12,25 +14,35 @@ if (typeof kosv == 'undefined' || !kosv) {
         this.SELECT_MODE_CHECKBOX = 0x1;
         this.SELECT_MODE_CLICK = 0x2;
 
-        this.$grid = $(gridSelector).eq(0);
+        this.inputWrapHtmlClass = 'input-wrap';
         this.prefix = 'gre';
+        this.saveAction = location.pathname;
         this.saveAjax = false;
-        this.saveUrl = location.pathname;
+        this.saveMethod = 'POST';
         this.selectMode = this.SELECT_MODE_CHECKBOX;
         this.selectParams = {};
 
+        this.$grid = $(gridSelector).eq(0);
         $.extend(this, params);
 
         this._initEvents();
     };
     var proto = kosv.GridRowEditor.prototype;
 
+
+
     proto.dataAttr = function (name) {
         return 'data-' + this.p('-' + name);
     };
-
     proto.p = function (str) {
         return this.prefix + str;
+    };
+
+
+
+    proto.getSelectedRows = function () {
+        var selector = 'tr[' + this.dataAttr('selected') + '="true"]';
+        return this.$grid.find(selector)
     };
 
     proto.invertSelectedRow = function ($row) {
@@ -46,8 +58,47 @@ if (typeof kosv == 'undefined' || !kosv) {
         $row.attr(this.dataAttr('selected'), state);
     };
 
+
+
+    proto.getSelectedInputs = function () {
+        var selector = '.' + this.inputWrapHtmlClass + ' :input';
+        return this.getSelectedRows().find(selector);
+    };
+
+
+
+    proto.submitSaveForm = function () {
+        var inputs = this.getSelectedInputs().clone();
+
+        var form =  $('<form />').attr({
+            action: this.saveAction,
+            method: this.saveMethod
+        }).append(inputs);
+
+        if (yii.getCsrfParam() !== undefined) {
+            form.append($('<input />').attr({
+                type: 'hidden',
+                name: yii.getCsrfParam(),
+                value: yii.getCsrfToken()
+            }));
+        }
+
+        form.append($('<input />').attr({
+            type: 'submit',
+            value: 'true'
+        }));
+
+        // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#form-submission-algorithm
+        $(document.body).append(form.hide());
+
+        form.submit();
+    };
+
+
+
     proto._initEvents = function () {
         this._initRowSelectorEvents();
+        this._initSaveFormEvents();
     };
 
     proto._initRowSelectorEvents = function () {
@@ -55,7 +106,7 @@ if (typeof kosv == 'undefined' || !kosv) {
         var selectParams = self.selectParams[self.selectMode];
 
         self.$grid.on(self.p('rowSelected'), function (e, $row, state) {
-            self.selectRow($row, state)
+            self.selectRow($row, state);
         });
 
         if (self.selectMode & self.SELECT_MODE_CHECKBOX) {
@@ -71,6 +122,14 @@ if (typeof kosv == 'undefined' || !kosv) {
                     .change();
             });
         }
+    };
+
+    proto._initSaveFormEvents = function () {
+        var self = this;
+
+        self.$grid.on(self.p('saveForm'), function () {
+            self.submitSaveForm();
+        });
     };
 
 })(jQuery);
