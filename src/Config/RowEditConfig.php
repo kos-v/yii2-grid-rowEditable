@@ -60,19 +60,24 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     public $prefix = 'gre';
 
     /**
+     * @var string
+     */
+    public $saveAction = '';
+
+    /**
+     * @var bool
+     */
+    public $saveAjax = false;
+
+    /**
+     * @var string
+     */
+    public $saveMethod = 'POST';
+
+    /**
      * @var int
      */
     public $selectMode = RowEditConfigInterface::SELECT_MODE_CHECKBOX;
-
-    /**
-     * @var array
-     */
-    public $selectModeParams = [
-        RowEditConfigInterface::SELECT_MODE_CHECKBOX => [
-            'selectRow' => '.gre-select-row',
-            'selectAllRows' => '.gre-select-allrows'
-        ],
-    ];
 
     /**
      * @var string
@@ -137,6 +142,9 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
      */
     public function getIgnoreMergeProps()
     {
-        return ['prefix', 'gridCssClass', 'selectMode', 'selectModeParams'];
+        return [
+            'prefix', 'gridCssClass', 'selectMode',
+            'saveAction', 'saveAjax', 'saveMethod'
+        ];
     }
 }

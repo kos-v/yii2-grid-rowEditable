@@ -165,7 +165,11 @@ trait GridRowEditTrait
 
         $jsGreSelector = '#' . $this->options['id'];
         $jsGreParams = [
+            'inputWrapHtmlClass' => $this->rowEditConfig->inputWrapHtmlClass,
             'prefix' => $this->rowEditConfig->prefix,
+            'saveAction' => $this->rowEditConfig->saveAction,
+            'saveAjax' => $this->rowEditConfig->saveAjax,
+            'saveMethod' => $this->rowEditConfig->saveMethod,
             'selectMode' => $this->rowEditConfig->selectMode,
             'selectParams' => $this->getRowEditorSelectParams(),
         ];
