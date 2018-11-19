@@ -66,6 +66,32 @@ if (typeof kosv == 'undefined' || !kosv) {
     };
 
 
+    proto.submitAjaxSaveForm = function () {
+        var ajaxParams = {
+            method: this.saveMethod,
+            url: this.saveAction,
+        };
+
+        var inputs = this.getSelectedInputs().clone();
+        var form =  $('<form />').append(inputs);
+        if (typeof yii.getCsrfParam() != 'undefined') {
+            form.append($('<input />').attr({
+                type: 'hidden',
+                name: yii.getCsrfParam(),
+                value: yii.getCsrfToken()
+            }));
+        }
+
+        if (typeof window.FormData != 'undefined') {
+            ajaxParams.contentType = false;
+            ajaxParams.data = new FormData(form[0]);
+            ajaxParams.processData = false;
+        } else {
+            ajaxParams.data = form.serialize();
+        }
+
+        $.ajax(ajaxParams);
+    };
 
     proto.submitSaveForm = function () {
         var inputs = this.getSelectedInputs().clone();
@@ -75,7 +101,7 @@ if (typeof kosv == 'undefined' || !kosv) {
             method: this.saveMethod
         }).append(inputs);
 
-        if (yii.getCsrfParam() !== undefined) {
+        if (typeof yii.getCsrfParam() != 'undefined') {
             form.append($('<input />').attr({
                 type: 'hidden',
                 name: yii.getCsrfParam(),
@@ -106,6 +132,7 @@ if (typeof kosv == 'undefined' || !kosv) {
         var selectParams = self.selectParams[self.selectMode];
 
         self.$grid.on(self.p('rowSelected'), function (e, $row, state) {
+            self.$grid.trigger(self.p('submitSaveForm'));
             self.selectRow($row, state);
         });
 
@@ -127,8 +154,12 @@ if (typeof kosv == 'undefined' || !kosv) {
     proto._initSaveFormEvents = function () {
         var self = this;
 
-        self.$grid.on(self.p('saveForm'), function () {
-            self.submitSaveForm();
+        self.$grid.on(self.p('submitSaveForm'), function () {
+            if (self.saveAjax) {
+                self.submitAjaxSaveForm();
+            } else {
+                self.submitSaveForm();
+            }
         });
     };
 
