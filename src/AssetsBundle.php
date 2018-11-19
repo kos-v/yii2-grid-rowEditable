@@ -7,7 +7,9 @@
 
 namespace Kosv\Yii2Grid\RowEditor;
 
+use Kosv\jFixClone\AssetsBundle as FixCloneAssets;
 use yii\web\AssetBundle;
+use yii\web\JqueryAsset;
 
 /**
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
@@ -16,9 +18,12 @@ use yii\web\AssetBundle;
 class AssetsBundle extends AssetBundle
 {
     public $sourcePath = "@vendor/kosv/yii2-grid-rowEditor/assets";
+
     public $depends = [
-        \yii\web\JqueryAsset::class,
+        JqueryAsset::class,
+        FixCloneAssets::class,
     ];
+
     public $css = [
         'css/style.css',
     ];
