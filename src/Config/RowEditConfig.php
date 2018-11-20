@@ -65,6 +65,11 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     public $saveAction = '';
 
     /**
+     * @var string
+     */
+    public $saveButton = '.gre-save-btn';
+
+    /**
      * @var bool
      */
     public $saveAjax = false;
@@ -144,7 +149,8 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     {
         return [
             'prefix', 'gridCssClass', 'selectMode',
-            'saveAction', 'saveAjax', 'saveMethod'
+            'saveAction', 'saveAjax', 'saveMethod',
+            'saveButton',
         ];
     }
 }

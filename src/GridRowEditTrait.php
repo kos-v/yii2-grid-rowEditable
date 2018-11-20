@@ -169,6 +169,7 @@ trait GridRowEditTrait
             'prefix' => $this->rowEditConfig->prefix,
             'saveAction' => $this->rowEditConfig->saveAction,
             'saveAjax' => $this->rowEditConfig->saveAjax,
+            'saveButton' => $this->rowEditConfig->saveButton,
             'saveMethod' => $this->rowEditConfig->saveMethod,
             'selectMode' => $this->rowEditConfig->selectMode,
             'selectParams' => $this->getRowEditorSelectParams(),
