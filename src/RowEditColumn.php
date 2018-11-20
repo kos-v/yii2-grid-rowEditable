@@ -45,6 +45,12 @@ class RowEditColumn extends DataColumn
     {
         /** @var GridRowEditInterface $grid */
         $grid = $this->grid;
+        if (!$grid instanceof GridRowEditInterface) {
+            throw new \UnexpectedValueException(get_class($grid) . ' class ' .
+                ' must implement the ' . GridRowEditInterface::class  . ' interface'
+            );
+        }
+
         if ($this->editParams) {
             return clone $grid->getRowEditConfig();
         }
