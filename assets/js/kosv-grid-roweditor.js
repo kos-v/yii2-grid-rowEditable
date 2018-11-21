@@ -14,17 +14,19 @@ if (typeof kosv == 'undefined' || !kosv) {
         this.SELECT_MODE_CHECKBOX = 0x1;
         this.SELECT_MODE_CLICK = 0x2;
 
-        this.inputWrapHtmlClass = 'input-wrap';
-        this.prefix = 'gre';
-        this.saveAction = location.pathname;
-        this.saveAjax = false;
-        this.saveButton = '.' + this.p('save-btn');
-        this.saveMethod = 'POST';
-        this.selectMode = this.SELECT_MODE_CHECKBOX;
-        this.selectParams = {};
+        var defaultParams = {
+            inputWrapHtmlClass: 'input-wrap',
+            prefix: 'gre',
+            saveAction: location.pathname,
+            saveAjax: false,
+            saveButton: '.' + this.p('save-btn'),
+            saveMethod: 'POST',
+            selectMode: this.SELECT_MODE_CHECKBOX,
+            selectParams: {},
+        };
 
         this.$grid = $(gridSelector).eq(0);
-        $.extend(this, params);
+        $.extend(this, $.extend(defaultParams, params));
 
         this._initEvents();
     };
