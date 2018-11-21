@@ -18,6 +18,7 @@ if (typeof kosv == 'undefined' || !kosv) {
         this.prefix = 'gre';
         this.saveAction = location.pathname;
         this.saveAjax = false;
+        this.saveButton = '.' + this.p('save-btn');
         this.saveMethod = 'POST';
         this.selectMode = this.SELECT_MODE_CHECKBOX;
         this.selectParams = {};
@@ -132,7 +133,6 @@ if (typeof kosv == 'undefined' || !kosv) {
         var selectParams = self.selectParams[self.selectMode];
 
         self.$grid.on(self.p('rowSelected'), function (e, $row, state) {
-            self.$grid.trigger(self.p('submitSaveForm'));
             self.selectRow($row, state);
         });
 
@@ -160,6 +160,10 @@ if (typeof kosv == 'undefined' || !kosv) {
             } else {
                 self.submitSaveForm();
             }
+        });
+
+        $(self.saveButton).on('click', function () {
+            self.$grid.trigger(self.p('submitSaveForm'));
         });
     };
 
