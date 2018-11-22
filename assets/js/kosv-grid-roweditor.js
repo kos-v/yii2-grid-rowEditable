@@ -1,7 +1,7 @@
 /**
- * @link https://github.com/Konstantin-Vl/yii2-grid-rowEditor
+ * @link https://github.com/Konstantin-Vl/yii2-grid-rowEditable
  * @copyright Copyright (c) 2018 Konstantin Voloshchuk
- * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditor/blob/master/LICENSE
+ * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditable/blob/master/LICENSE
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
