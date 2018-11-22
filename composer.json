@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Kosv\\Yii2Grid\\RowEditor\\": "src/"
+      "Kosv\\Yii2Grid\\RowEditable\\": "src/"
     }
   }
 }

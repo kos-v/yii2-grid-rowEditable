@@ -5,7 +5,7 @@
  * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditable/blob/master/LICENSE
  */
 
-namespace Kosv\Yii2Grid\RowEditor\Select;
+namespace Kosv\Yii2Grid\RowEditable\Select;
 
 use yii\grid\CheckboxColumn as BaseCheckboxColumn;
 use yii\helpers\Html;

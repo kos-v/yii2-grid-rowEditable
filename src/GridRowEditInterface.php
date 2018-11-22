@@ -5,9 +5,9 @@
  * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditable/blob/master/LICENSE
  */
 
-namespace Kosv\Yii2Grid\RowEditor;
+namespace Kosv\Yii2Grid\RowEditable;
 
-use Kosv\Yii2Grid\RowEditor\Config\RowEditConfigInterface;
+use Kosv\Yii2Grid\RowEditable\Config\RowEditConfigInterface;
 
 /**
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>

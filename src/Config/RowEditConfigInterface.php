@@ -5,7 +5,7 @@
  * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditable/blob/master/LICENSE
  */
 
-namespace Kosv\Yii2Grid\RowEditor\Config;
+namespace Kosv\Yii2Grid\RowEditable\Config;
 
 /**
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
@@ -13,9 +13,9 @@ namespace Kosv\Yii2Grid\RowEditor\Config;
  */
 interface RowEditConfigInterface
 {
-    const INPUT_TYPE_INPUT = \Kosv\Yii2Grid\RowEditor\Input\Input::class;
-    const INPUT_TYPE_TEXTAREA = \Kosv\Yii2Grid\RowEditor\Input\Textarea::class;
-    const INPUT_TYPE_DROPDOWNLIST = \Kosv\Yii2Grid\RowEditor\Input\DropDownList::class;
+    const INPUT_TYPE_INPUT = \Kosv\Yii2Grid\RowEditable\Input\Input::class;
+    const INPUT_TYPE_TEXTAREA = \Kosv\Yii2Grid\RowEditable\Input\Textarea::class;
+    const INPUT_TYPE_DROPDOWNLIST = \Kosv\Yii2Grid\RowEditable\Input\DropDownList::class;
 
     const SELECT_MODE_CHECKBOX = 0x1;
     const SELECT_MODE_CLICK = 0x2; //TODO: In the future version
