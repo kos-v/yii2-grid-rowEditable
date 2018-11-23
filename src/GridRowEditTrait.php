@@ -8,8 +8,8 @@
 namespace Kosv\Yii2Grid\RowEditable;
 
 use Closure;
-use Kosv\Yii2Grid\RowEditable\Config\RowEditConfig;
-use Kosv\Yii2Grid\RowEditable\Config\RowEditConfigInterface;
+use Kosv\Yii2Grid\RowEditable\Config\EditConfig;
+use Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface;
 use Kosv\Yii2Grid\RowEditable\Select\CheckboxColumnInterface;
 use yii\helpers\Json;
 use yii\helpers\Html;
@@ -26,7 +26,7 @@ trait GridRowEditTrait
     public $commonEditParams = [];
 
     /**
-     * @var RowEditConfig
+     * @var EditConfig
      */
     protected $rowEditConfig;
 
@@ -43,7 +43,7 @@ trait GridRowEditTrait
      */
     public function getDefaultEditConfigClass()
     {
-        return RowEditConfig::class;
+        return EditConfig::class;
     }
 
     /**
@@ -61,7 +61,7 @@ trait GridRowEditTrait
     }
 
     /**
-     * @return RowEditConfig
+     * @return EditConfig
      */
     public function getRowEditConfig()
     {
@@ -114,7 +114,7 @@ trait GridRowEditTrait
     {
         $selectParams = [];
 
-        $selectMode = RowEditConfigInterface::SELECT_MODE_CHECKBOX;
+        $selectMode = EditConfigInterface::SELECT_MODE_CHECKBOX;
         if ($this->rowEditConfig->selectMode & $selectMode) {
             /** @var CheckboxColumnInterface $column */
             $column = $this->getFirstColumnByType(CheckboxColumnInterface::class);

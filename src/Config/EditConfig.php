@@ -17,7 +17,7 @@ use yii\helpers\ArrayHelper;
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-class RowEditConfig extends BaseObject implements RowEditConfigInterface
+class EditConfig extends BaseObject implements EditConfigInterface
 {
     /**
      * @var bool
@@ -42,7 +42,7 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     /**
      * @var \Closure|array|string
      */
-    public $input = RowEditConfigInterface::INPUT_TYPE_INPUT;
+    public $input = EditConfigInterface::INPUT_TYPE_INPUT;
 
     /**
      * @var string
@@ -82,7 +82,7 @@ class RowEditConfig extends BaseObject implements RowEditConfigInterface
     /**
      * @var int
      */
-    public $selectMode = RowEditConfigInterface::SELECT_MODE_CHECKBOX;
+    public $selectMode = EditConfigInterface::SELECT_MODE_CHECKBOX;
 
     /**
      * @var string

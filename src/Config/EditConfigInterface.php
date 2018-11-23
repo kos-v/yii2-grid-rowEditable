@@ -11,7 +11,7 @@ namespace Kosv\Yii2Grid\RowEditable\Config;
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-interface RowEditConfigInterface
+interface EditConfigInterface
 {
     const INPUT_TYPE_INPUT = \Kosv\Yii2Grid\RowEditable\Input\Input::class;
     const INPUT_TYPE_TEXTAREA = \Kosv\Yii2Grid\RowEditable\Input\Textarea::class;

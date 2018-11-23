@@ -7,7 +7,7 @@
 
 namespace Kosv\Yii2Grid\RowEditable;
 
-use Kosv\Yii2Grid\RowEditable\Config\RowEditConfigInterface;
+use Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface;
 
 /**
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
@@ -16,7 +16,7 @@ use Kosv\Yii2Grid\RowEditable\Config\RowEditConfigInterface;
 interface GridRowEditInterface
 {
     /**
-     * @return RowEditConfigInterface
+     * @return EditConfigInterface
      */
     public function getRowEditConfig();
 }

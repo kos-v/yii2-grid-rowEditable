@@ -7,8 +7,8 @@
 
 namespace Kosv\Yii2Grid\RowEditable;
 
-use Kosv\Yii2Grid\RowEditable\Config\RowEditConfig;
-use Kosv\Yii2Grid\RowEditable\Config\RowEditConfigInterface;
+use Kosv\Yii2Grid\RowEditable\Config\EditConfig;
+use Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface;
 use Kosv\Yii2Grid\RowEditable\Input\InputDto;
 use yii\grid\DataColumn;
 use yii\helpers\Html;
@@ -25,7 +25,7 @@ class RowEditColumn extends DataColumn
     public $editParams = [];
 
     /**
-     * @var RowEditConfig
+     * @var EditConfig
      */
     protected $editConfig;
 
@@ -39,7 +39,7 @@ class RowEditColumn extends DataColumn
     }
 
     /**
-     * @return RowEditConfigInterface
+     * @return EditConfigInterface
      */
     protected function getCommonEditConfig()
     {
@@ -112,7 +112,7 @@ class RowEditColumn extends DataColumn
 
             $html = strval(new $inputType($inputDto));
         } elseif (is_array($inputParams)) {
-            $inputType = RowEditConfigInterface::INPUT_TYPE_INPUT;
+            $inputType = EditConfigInterface::INPUT_TYPE_INPUT;
             if (isset($inputParams['type'])) {
                 $inputType = $inputParams['type'];
                 unset($inputParams['type']);
