@@ -18,7 +18,7 @@ use yii\helpers\Html;
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-trait GridRowEditTrait
+trait EditableGridTrait
 {
     /**
      * @var array

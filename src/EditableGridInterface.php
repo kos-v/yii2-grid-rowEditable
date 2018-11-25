@@ -13,7 +13,7 @@ use Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface;
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-interface GridRowEditInterface
+interface EditableGridInterface
 {
     /**
      * @return EditConfigInterface

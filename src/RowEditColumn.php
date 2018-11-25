@@ -43,11 +43,11 @@ class RowEditColumn extends DataColumn
      */
     protected function getCommonEditConfig()
     {
-        /** @var GridRowEditInterface $grid */
+        /** @var EditableGridInterface $grid */
         $grid = $this->grid;
-        if (!$grid instanceof GridRowEditInterface) {
+        if (!$grid instanceof EditableGridInterface) {
             throw new \UnexpectedValueException(get_class($grid) . ' class ' .
-                ' must implement the ' . GridRowEditInterface::class  . ' interface'
+                ' must implement the ' . EditableGridInterface::class  . ' interface'
             );
         }
 
