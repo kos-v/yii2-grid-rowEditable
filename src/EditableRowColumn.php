@@ -17,7 +17,7 @@ use yii\helpers\Html;
  * @author Konstantin Voloshchuk <kosv.dev@gmail.com>
  * @since 1.0
  */
-class RowEditColumn extends DataColumn
+class EditableRowColumn extends DataColumn
 {
     /**
      * @var array

@@ -35,7 +35,7 @@ trait EditableGridTrait
      */
     public function getDefaultEditColumnClass()
     {
-        return RowEditColumn::class;
+        return EditableRowColumn::class;
     }
 
     /**
