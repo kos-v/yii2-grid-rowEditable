@@ -67,7 +67,7 @@ class EditConfig extends BaseObject implements EditConfigInterface
     /**
      * @var string
      */
-    public $saveButton = '.gre-save-btn';
+    public $saveButton;
 
     /**
      * @var bool
@@ -113,6 +113,10 @@ class EditConfig extends BaseObject implements EditConfigInterface
                 "::formAttribute property must be have attribute name from the " .
                 get_class($this->form)
             );
+        }
+
+        if (!$this->saveButton) {
+            $this->saveButton = EditConfigInterface::DEFAULT_SAVE_BTN;
         }
     }
 

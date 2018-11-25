@@ -20,6 +20,8 @@ interface EditConfigInterface
     const SELECT_MODE_CHECKBOX = 0x1;
     const SELECT_MODE_CLICK = 0x2; //TODO: In the future version
 
+    const DEFAULT_SAVE_BTN = '.gre-save-btn';
+
     /**
      * @param array $config
      * @return $this

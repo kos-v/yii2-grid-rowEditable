@@ -164,9 +164,11 @@ if (typeof kosv == 'undefined' || !kosv) {
             }
         });
 
-        $(self.saveButton).on('click', function () {
-            self.$grid.trigger(self.p('submitSaveForm'));
-        });
+        if (self.saveButton) {
+            $(self.saveButton).on('click', function () {
+                self.$grid.trigger(self.p('submitSaveForm'));
+            });
+        }
     };
 
 })(jQuery);
