@@ -6,8 +6,8 @@ Yii2 расширение для редактирования данных в [`
 *TODO: написать документацию*
 
 ## Терминология
-`Данное расширение` - Yii2 Grid RowEditable.   
-`YourGridView` - чтобы использовать данное расширение, вам нужно иметь/создать дочерний класс от [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview),
+**Данное расширение** - Yii2 Grid RowEditable.   
+**YourGridView** - чтобы использовать данное расширение, вам нужно иметь/создать дочерний класс от [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview),
 поэтому в контексте данной документации, ваш `GridView` будем называть `YourGridView`
 
 ## Как использовать
