@@ -2,6 +2,8 @@
 
 Yii2 расширение для редактирования данных в [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview)
 
+**Расширение находится на стадии разработки. На данный момент осталось реализовать валидацию, протестировать,
+и дописать документацияю**
 ## Установка
 *TODO: написать документацию*
 
@@ -48,16 +50,81 @@ class YourGridView extends YiiGridView implements EditableGridInterface
 }
 ```
 ### Шаг 2. Создание формы
-*TODO: написать документацию*
+
+Создайте форму и поле формы для валидации и сохранения данных.
+
+```php
+namespace app\models;
+
+use yii\base\Model;
+
+class YourGridSaveForm extends Model
+{
+    public $editingRows;
+    
+    public function rules()
+    {
+        return [
+            # TODO: Ваши правила валидации
+        ];
+    }
+    
+    public function save()
+    {
+        # TODO: Сохранение данных из $this->editingRows
+    {
+}
+```
 
 ### Шаг 3. Вывод и обязательные параметры
-*TODO: написать документацию*
 
-### Шаг 4. Колонка с чекбоксами
-*TODO: написать документацию*
+Выведите `YourGridView` в представлении и укажите обязательные параметры: модель формы и поле формы
+
+```php
+<?php
+/** @var $saveForm app\models\YourGridSaveForm */
+
+echo YourGridView::widget([
+    ...
+    'commonEditParams' => [
+        'form' => $modelOfSaveForm,
+        'formAttribute' => 'editingRows',
+        ...
+    ],
+])
+```
+
+### Шаг 4. Колонка с чекбоксами для выбора строки
+
+В вывод `YourGridView` добавьте колонку с чекбоксом `Kosv\Yii2Grid\RowEditable\Select\CheckboxColumn`
+```php
+<?php
+/** @var $saveForm app\models\YourGridSaveForm */
+
+use Kosv\Yii2Grid\RowEditable\Select\CheckboxColumn;
+
+echo YourGridView::widget([
+    ...
+    'commonEditParams' => [
+        'form' => $modelOfSaveForm,
+        'formAttribute' => 'editingRows',
+        ...
+    ],
+    'columns' => [
+        ...
+        ['class' => CheckboxColumn::class],
+    ],
+])
+```
 
 ### Шаг 5. Кнопка сохранения данных
-*TODO: написать документацию*
+
+В любом месте страницы, выведите кнопку для сохранения данных
+```php
+<?= Html::button('Save', [
+    'class' => \Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface::DEFAULT_SAVE_BTN
+]) ?>
+```
 
 ## Конфигурирование
 
