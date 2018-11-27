@@ -238,7 +238,7 @@ echo YourGridView::widget([
         # - Тип integer
         # - Значение по умолчанию EditConfigInterface::SELECT_MODE_CHECKBOX
         # - Нельзя предопределить в столбце
-        'selectMode' => Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface::EditConfigInterface,
+        'selectMode' => Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface::SELECT_MODE_CHECKBOX,
         
         # Html класс для блока с выводимыми данными в grid-ячейке
         # - Необязательный параметр
