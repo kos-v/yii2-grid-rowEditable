@@ -124,6 +124,14 @@ if (typeof kosv == 'undefined' || !kosv) {
     };
 
 
+    proto.displaySaveButton = function () {
+        if (this.getSelectedInputs().length) {
+            $(this.saveButton).show();
+        } else {
+            $(this.saveButton).hide();
+        }
+    };
+
 
     proto._initEvents = function () {
         this._initRowSelectorEvents();
@@ -136,6 +144,7 @@ if (typeof kosv == 'undefined' || !kosv) {
 
         self.$grid.on(self.p('rowSelected'), function (e, $row, state) {
             self.selectRow($row, state);
+            self.displaySaveButton();
         });
 
         if (self.selectMode & self.SELECT_MODE_CHECKBOX) {

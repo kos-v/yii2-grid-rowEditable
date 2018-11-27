@@ -9,3 +9,7 @@
 .gre-grid-view tr[data-gre-selected="false"] .input-wrap {
     display: none;
 }
+
+.gre-save-btn {
+    display: none;
+}

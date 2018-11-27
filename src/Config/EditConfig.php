@@ -116,7 +116,7 @@ class EditConfig extends BaseObject implements EditConfigInterface
         }
 
         if (!$this->saveButton) {
-            $this->saveButton = EditConfigInterface::DEFAULT_SAVE_BTN;
+            $this->saveButton = '.' . EditConfigInterface::DEFAULT_CLASS_SAVE_BTN;
         }
     }
 
