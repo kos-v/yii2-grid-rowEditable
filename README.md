@@ -122,7 +122,7 @@ echo YourGridView::widget([
 В любом месте страницы, выведите кнопку для сохранения данных
 ```php
 <?= Html::button('Save', [
-    'class' => \Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface::DEFAULT_SAVE_BTN
+    'class' => \Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface::DEFAULT_CLASS_SAVE_BTN
 ]) ?>
 ```
 
