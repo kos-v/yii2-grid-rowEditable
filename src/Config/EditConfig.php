@@ -71,6 +71,8 @@ class EditConfig extends BaseObject implements EditConfigInterface
 
     /**
      * @var bool
+     *
+     * TODO: In the future version
      */
     public $saveAjax = false;
 
