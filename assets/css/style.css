@@ -1,5 +1,5 @@
 .gre-grid-view tr[data-gre-selected="true"] {
-    background-color: #d9edf7!important;
+    background-color: #d4edda!important;
 }
 
 .gre-grid-view tr[data-gre-selected="true"] .output-wrap {
@@ -12,4 +12,8 @@
 
 .gre-save-btn {
     display: none;
+}
+
+.gre-error-msg {
+    color: #a94442;
 }

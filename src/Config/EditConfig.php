@@ -7,9 +7,9 @@
 
 namespace Kosv\Yii2Grid\RowEditable\Config;
 
+use Kosv\Yii2Grid\RowEditable\Form\SaveFormInterface;
 use yii\base\BaseObject;
 use yii\base\InvalidConfigException;
-use yii\base\Model;
 use yii\base\UnknownPropertyException;
 use yii\helpers\ArrayHelper;
 
@@ -25,14 +25,14 @@ class EditConfig extends BaseObject implements EditConfigInterface
     public $enable = true;
 
     /**
-     * @var Model
+     * @var SaveFormInterface
      */
     public $form;
 
     /**
      * @var string
      */
-    public $formAttribute = 'editingRows';
+    public $formAttribute = EditConfigInterface::DEFAULT_LOAD_ROWS_ATTRIBUTE;
 
     /**
      * @var string
@@ -95,15 +95,22 @@ class EditConfig extends BaseObject implements EditConfigInterface
     public $outputWrapHtmlTag = 'div';
 
     /**
+     * @var string
+     */
+    public $validationErrorLayout = <<<HTML
+    <p class="gre-validation gre-error-msg">{error}</p>
+HTML;
+
+    /**
      * {@inheritdoc}
      *
      * @throws InvalidConfigException
      */
     public function init()
     {
-        if (!$this->form instanceof Model) {
+        if (!$this->form instanceof SaveFormInterface) {
             throw new InvalidConfigException(
-                static::class . '::form property must be instance ' . Model::class
+                static::class . '::form property must be instance ' . SaveFormInterface::class
             );
         }
 
@@ -156,5 +163,14 @@ class EditConfig extends BaseObject implements EditConfigInterface
             'saveAction', 'saveAjax', 'saveMethod',
             'saveButton',
         ];
+    }
+
+    /**
+     * @param string $val
+     * @return string
+     */
+    public function getPrefix($val = '')
+    {
+        return $this->prefix . $val;
     }
 }

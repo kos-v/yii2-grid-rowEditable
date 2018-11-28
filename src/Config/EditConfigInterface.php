@@ -21,6 +21,7 @@ interface EditConfigInterface
     const SELECT_MODE_CLICK = 0x2; //TODO: In the future version
 
     const DEFAULT_CLASS_SAVE_BTN = 'gre-save-btn';
+    const DEFAULT_LOAD_ROWS_ATTRIBUTE = 'editingRows';
 
     /**
      * @param array $config

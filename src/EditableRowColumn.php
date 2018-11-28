@@ -74,11 +74,16 @@ class EditableRowColumn extends DataColumn
             );
 
 
-            $editInput = Html::tag(
-                $this->editConfig->inputWrapHtmlTag,
-                $this->renderDataCellEditInput($model, $key, $index),
-                ['class' => $this->editConfig->inputWrapHtmlClass]
-            );
+            $editContent = $this->renderDataCellEditInput($model, $key, $index) .
+                $this->renderDataCellEditingError($key, $index);
+            $editContentParams = ['class' => $this->editConfig->inputWrapHtmlClass];
+
+            if ($this->editConfig->form->hasEditableRowsErrors($index, $key, $this->attribute)) {
+                $dataAttrKey = 'data-' . $this->editConfig->getPrefix('-valid-error');
+                $editContentParams[$dataAttrKey] = 'true';
+            }
+
+            $editInput = Html::tag($this->editConfig->inputWrapHtmlTag, $editContent, $editContentParams);
         } else {
             $displayValue = parent::renderDataCellContent($model, $key, $index);
         }
@@ -126,5 +131,21 @@ class EditableRowColumn extends DataColumn
         }
 
         return $html;
+    }
+
+    /**
+     * @param int|string $key
+     * @param int $index
+     * @return array|null|string|string[]
+     */
+    protected function renderDataCellEditingError($key, $index)
+    {
+        $error = $this->editConfig->form->getEditableRowsFirstError($index, $key, $this->attribute);
+        if (!$error) {
+            return '';
+        }
+
+        $out = preg_replace('/{error}/', $error, $this->editConfig->validationErrorLayout);
+        return $out !== $this->editConfig->validationErrorLayout ? $out : $error;
     }
 }

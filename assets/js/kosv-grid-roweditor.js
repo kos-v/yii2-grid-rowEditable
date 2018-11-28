@@ -117,7 +117,7 @@ if (typeof kosv == 'undefined' || !kosv) {
             value: 'true'
         }));
 
-        // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#form-submission-algorithm
+        // see: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#form-submission-algorithm
         $(document.body).append(form.hide());
 
         form.submit();
@@ -155,10 +155,23 @@ if (typeof kosv == 'undefined' || !kosv) {
             });
 
             $(selectParams.allSelector).on('change', function () {
-                $(this).closest('table')
+                $(this)
+                    .closest('table')
                     .find(selectParams.itemSelector)
                     .change();
             });
+
+            self.$grid
+                .find(selectParams.itemSelector + ':checked')
+                .change();
+
+            self.$grid
+                .find('.' + self.inputWrapHtmlClass + '[' + self.dataAttr('valid-error') + '="true"]')
+                .closest('tr')
+                .find(selectParams.itemSelector + ':not(:checked)')
+                .attr('checked', true)
+                .change();
+
         }
     };
 
