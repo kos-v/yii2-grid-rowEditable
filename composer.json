@@ -1,5 +1,5 @@
 {
-  "name": "kosv/yii2-grid-rowEditable",
+  "name": "kosv/yii2-grid-roweditable",
   "description": "Extension for editing rows for yii2 grid widget.",
   "keywords": ["yii2", "grid", "row", "editor", "extension", "widget", "kosv"],
   "homepage": "https://github.com/Konstantin-Vl/yii2-grid-rowEditable.git",

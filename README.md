@@ -7,7 +7,7 @@ Yii2 расширение для редактирования данных в [`
 
 Выполните
 ```bash
-$ composer require kosv/yii2-grid-rowEditable:1.0.*
+$ composer require kosv/yii2-grid-roweditable:1.0.*
 ```
 Или добавьте
 ```json
