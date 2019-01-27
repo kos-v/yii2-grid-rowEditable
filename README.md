@@ -11,7 +11,7 @@ $ composer require kosv/yii2-grid-roweditable:1.0.*
 ```
 Или добавьте
 ```json
-"kosv/yii2-grid-rowEditable": "dev-master"
+"kosv/yii2-grid-rowEditable": "1.0.*"
 ```
 в секцию `require` файла `composer.json`.
 

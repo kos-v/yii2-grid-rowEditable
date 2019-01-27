@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/Konstantin-Vl/yii2-grid-rowEditable
- * @copyright Copyright (c) 2018 Konstantin Voloshchuk
+ * @copyright Copyright (c) 2018-2019 Konstantin Voloshchuk
  * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditable/blob/master/LICENSE
  */
 
@@ -17,7 +17,7 @@ use yii\web\JqueryAsset;
  */
 class AssetsBundle extends AssetBundle
 {
-    public $sourcePath = "@vendor/kosv/yii2-grid-rowEditable/assets";
+    public $sourcePath = __DIR__ . "/../assets";
 
     public $depends = [
         JqueryAsset::class,
@@ -29,9 +29,5 @@ class AssetsBundle extends AssetBundle
     ];
     public $js = [
         'js/kosv-grid-roweditor.js',
-    ];
-
-    public $publishOptions = [
-        'forceCopy' => true, //TODO: Remove
     ];
 }
