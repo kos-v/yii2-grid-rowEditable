@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/Konstantin-Vl/yii2-grid-rowEditable
- * @copyright Copyright (c) 2018 Konstantin Voloshchuk
+ * @copyright Copyright (c) 2018-2019 Konstantin Voloshchuk
  * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditable/blob/master/LICENSE
  */
 
@@ -47,7 +47,7 @@ class EditableRowColumn extends DataColumn
         $grid = $this->grid;
         if (!$grid instanceof EditableGridInterface) {
             throw new \UnexpectedValueException(get_class($grid) . ' class ' .
-                ' must implement the ' . EditableGridInterface::class  . ' interface'
+                ' must implement the ' . EditableGridInterface::class . ' interface'
             );
         }
 
@@ -73,7 +73,6 @@ class EditableRowColumn extends DataColumn
                 ['class' => $this->editConfig->outputWrapHtmlClass]
             );
 
-
             $editContent = $this->renderDataCellEditInput($model, $key, $index) .
                 $this->renderDataCellEditingError($key, $index);
             $editContentParams = ['class' => $this->editConfig->inputWrapHtmlClass];
@@ -87,7 +86,6 @@ class EditableRowColumn extends DataColumn
         } else {
             $displayValue = parent::renderDataCellContent($model, $key, $index);
         }
-
 
         return $displayValue . $editInput;
     }

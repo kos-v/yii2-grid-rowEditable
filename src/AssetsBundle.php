@@ -27,6 +27,7 @@ class AssetsBundle extends AssetBundle
     public $css = [
         'css/style.css',
     ];
+
     public $js = [
         'js/kosv-grid-roweditor.js',
     ];

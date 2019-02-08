@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/Konstantin-Vl/yii2-grid-rowEditable
- * @copyright Copyright (c) 2018 Konstantin Voloshchuk
+ * @copyright Copyright (c) 2018-2019 Konstantin Voloshchuk
  * @license https://github.com/Konstantin-Vl/yii2-grid-rowEditable/blob/master/LICENSE
  */
 
@@ -45,8 +45,7 @@ abstract class AbstractInput extends BaseObject implements InputInterface
      */
     public function getName()
     {
-        return $this->name ?:
-            Html::getInputName($this->inputDto->form, $this->inputDto->formAttribute)
+        return $this->name ?: Html::getInputName($this->inputDto->form, $this->inputDto->formAttribute)
             . "[{$this->inputDto->index}][{$this->inputDto->key}][{$this->inputDto->attribute}]";
     }
 
