@@ -22,5 +22,11 @@
     "psr-4": {
       "Kosv\\Yii2Grid\\RowEditable\\": "src/"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
 }
