@@ -5,8 +5,7 @@
   "homepage": "https://github.com/Konstantin-Vl/yii2-grid-rowEditable.git",
   "type": "yii2-extension",
   "license": "BSD-3-Clause",
-  "minimum-stability": "stable",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     {
       "name": "Konstantin Voloshchuk",
