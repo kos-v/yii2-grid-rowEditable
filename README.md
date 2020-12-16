@@ -3,8 +3,6 @@
 Yii2 расширение для редактирования данных в [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview)
 
 ## Установка
-Данное расширение лучше устанавливать через [composer](https://getcomposer.org/download/)
-
 Выполните
 ```bash
 $ composer require kosv/yii2-grid-roweditable:1.0.*
@@ -15,7 +13,7 @@ $ composer require kosv/yii2-grid-roweditable:1.0.*
 ```
 в секцию `require` файла `composer.json`.
 
-## Терминология
+## Определения
 **Данное расширение** - Yii2 Grid RowEditable.   
 **YourGridView** - для использования данного расширения, вам нужно иметь/создать дочерний класс от [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview),
 поэтому в контексте документации, ваш `GridView` будем называть `YourGridView`.  
@@ -24,7 +22,6 @@ $ composer require kosv/yii2-grid-roweditable:1.0.*
 
 ## Как использовать?
 
-Весь этап можно разделить на 6 шагов:
 1. Нужно подключить данное расширение к `YourGridView`.
 2. Нужно реализовать `YourSaveForm`, - в данном классе будет выполнятся процесс валидации и сохранения данных.
 3. В экшене вашего контроллера, создать объект `YourSaveForm` и написать условие для сохранения данных формы.
