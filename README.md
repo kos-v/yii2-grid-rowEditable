@@ -7,31 +7,26 @@ Yii2 расширение для редактирования данных в [`
 ```bash
 $ composer require kosv/yii2-grid-roweditable:1.0.*
 ```
-Или добавьте
-```json
-"kosv/yii2-grid-rowEditable": "1.0.*"
-```
-в секцию `require` файла `composer.json`.
+или добавьте `"kosv/yii2-grid-rowEditable": "1.0.*"` в `composer.json`
 
 ## Определения
-**Данное расширение** - Yii2 Grid RowEditable.   
-**YourGridView** - для использования данного расширения, вам нужно иметь/создать дочерний класс от [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview),
-поэтому в контексте документации, ваш `GridView` будем называть `YourGridView`.  
-**YourSaveForm** - вам нужно будет создать форму, в которой будет выолнятся валидация и сохранение данных.
-В контексте даннной документации, такую форму будем называть `YourSaveForm`.  
+**YourGridView** - для использования данного расширения вам нужно иметь/создать дочерний класс от [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview),
+поэтому такой класс мы будем называть `YourGridView`.  
+**YourSaveForm** - вам нужно будет создать форму в которой будет выолняться валидация и сохранение данных.
+В даннной документации такая форма будет называться `YourSaveForm`.  
 
 ## Как использовать?
 
 1. Нужно подключить данное расширение к `YourGridView`.
-2. Нужно реализовать `YourSaveForm`, - в данном классе будет выполнятся процесс валидации и сохранения данных.
-3. В экшене вашего контроллера, создать объект `YourSaveForm` и написать условие для сохранения данных формы.
-4. Нужно вывести `YourGridView` в вашем View, и указать обязательные общие параметры редактирования.
-5. В список столбцов добавить `Kosv\Yii2Grid\RowEditable\Select\CheckboxColumn` - это столбец чекбоксов, который позволяет выбирать строки.
+2. Нужно реализовать `YourSaveForm`. В этом классе будет выполняться процесс валидации и сохранения данных.
+3. В экшене вашего контроллера создать объект `YourSaveForm` и реализовать логику для сохранения данных формы.
+4. Нужно вывести `YourGridView` в вашем View и указать обязательные общие параметры редактирования.
+5. В список столбцов добавить `Kosv\Yii2Grid\RowEditable\Select\CheckboxColumn`. Это столбец чекбоксов, который позволяет выбирать строки.
 6. Вывести кнопку сохранения изменений.
 
 ### Шаг 1. Инициализация YourGridView
 
-Если в приложении нет дочернего класса [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview),
+Если у вас нет дочернего класса от [`GridView`](https://www.yiiframework.com/doc/api/2.0/yii-grid-gridview),
 то создайте его в любом месте вашего приложения
 ```php
 namespace app\widgets;
@@ -59,7 +54,7 @@ class YourGridView extends YiiGridView implements EditableGridInterface
 ```
 ### Шаг 2. Создание YourSaveForm
 
-Создайте класс формы, и унаследуйти его от `yii\base\Model`(или от любого другого потомка `yii\base\Model`) 
+Создайте класс формы и унаследуйти его от `yii\base\Model`(или от любого другого потомка `yii\base\Model`) 
 
 ```php
 namespace app\models;
@@ -93,8 +88,8 @@ class YourSaveForm extends Model implements SaveFormInterface
 }
 ```
 
-В `YourSaveForm` реализуйте методы: `validateEditableRows`(отвечает за валидацию данных), и `saveEditableRows`(отвечает за сохранение данных).
-По умолчанию, данные методы не имеют реализации, поэтому вы должы сами позаботится о том, как будут валидироваться и сохраняться ваши данные. 
+В `YourSaveForm` реализуйте методы: `validateEditableRows`(отвечает за валидацию данных) и `saveEditableRows`(отвечает за сохранение данных).
+По умолчанию, данные методы не имеют реализации, поэтому вы должы сами позаботиться о том, как будут валидироваться и сохраняться ваши данные. 
 
 ```php
 namespace app\models;
@@ -191,7 +186,7 @@ echo YourGridView::widget([
 
 ### Шаг 6. Кнопка для сохранения данных
 
-В любом месте страницы, выведите кнопку для сохранения данных
+В любом месте страницы выведите кнопку для сохранения данных
 ```php
 <?php echo Html::button('Save', [
     'class' => \Kosv\Yii2Grid\RowEditable\Config\EditConfigInterface::DEFAULT_CLASS_SAVE_BTN
@@ -217,7 +212,7 @@ echo YourGridView::widget([
 
 ### Конфигурация столбцов
 
-Если в массиве columns вашего `YourGridView`, есть столбцы без явно указанного типа (задаётся через поле `class`),
+Если в массиве columns вашего `YourGridView` есть столбцы без явно указанного типа (задаётся через поле `class`),
 то по умолчанию будет использоваться столбец с типом `Kosv\Yii2Grid\RowEditable\EditableRowColumn`.  
 Все столбцы типа `Kosv\Yii2Grid\RowEditable\EditableRowColumn` можно конфигурируются точно также как и `commonEditParams`,
 только параметры кофигурации задаются через поле `editParams`
